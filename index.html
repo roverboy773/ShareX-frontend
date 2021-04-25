@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
+</head>
+
+<body>
+
+    <nav>
+        <div><span><img src="./smartphone.svg" alt=""></span></div>
+    </nav>
+    <main>
+        <section class="content">
+          <div class="dropbox_wrapper">
+            <div class="dropbox">
+                <div class="icons">
+                    <i class="fas fa-cloud-upload-alt left"></i>
+                    <i class="fas fa-cloud-upload-alt center"></i>
+                    <i class="fas fa-cloud-upload-alt right"></i>
+                </div>
+                <input type="file" id="fileopener">
+                <div class="info">
+                    <h4>Drop your File Here, Or <span class="file_selector_btn">Browse</span></h4>
+                </div>
+            </div>
+        </div>
+            <div class="progress_container">
+                  <div class="bg-progress"></div>
+                  <div class="container">
+                    <div class="title">Uploading....</div>
+                    <div class="percValue"><span id='value'>0</span>%</div> 
+                    <div class="progress_bar"></div>
+                  </div>    
+            </div>
+            <div class="sharing_container">
+                <p>Link Expires in 24 hrs</p>
+                <div class="input_container">
+                <input type="text" id="fileURL" readonly >
+                <img src="./clone-regular.svg" alt="copy image" id="copy">
+                </div>
+            </div>
+        </section>
+          
+         <div class="bg_upload_vector"></div>
+        <div class="msg">Copied To Clipboard</div>
+    </main>
+    <footer class="end">
+        <p>2020 Registered And Reserved Made by Pranjal Sharma</p>
+    </footer>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
