@@ -56,7 +56,7 @@ document.getElementById("submit").addEventListener('click', async (e) => {
     let data = { name, email, password }
 
 
-    const result = await fetch('http://localhost:5000/register', {
+    const result = await fetch('https://share--x.herokuapp.com/register', {
       method: 'POST', // or 'PUT'
       headers: {
         'Accept': 'application/json',

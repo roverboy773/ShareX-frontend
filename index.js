@@ -10,8 +10,8 @@ const sharingContainer=document.querySelector('.sharing_container');
 const copyButton=document.querySelector('#copy');
 const copyMessage=document.querySelector('.msg');
 
-// const host="https://share--x.herokuapp.com/";
-const host="http://localhost:5000/"
+const host="https://share--x.herokuapp.com/";
+// const host="http://localhost:5000/"
 const uploadURL=host+"api/file";
 
 if(localStorage.getItem("mode")==="bright"){
@@ -220,7 +220,7 @@ document.querySelector('.sent_to_btn').addEventListener('click',async(e)=>{
 else{
   const data={...JSON.parse(localStorage.getItem('@Auth')),file:JSON.parse(localStorage.getItem('file')).uuid}
   // console.log(data)
-   const result =await fetch(`http://localhost:5000/sent_to/${receiver}`,{
+   const result =await fetch(`https://share--x.herokuapp.com/sent_to/${receiver}`,{
     method: 'POST', // or 'PUT'
     headers: {
         'Accept': 'application/json',
