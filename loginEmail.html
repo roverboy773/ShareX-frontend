@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+    <!-- <link rel="stylesheet" href="./mode.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Document</title>
+
+</head>
+<body>
+  <nav class="w-full shadow-xl py-3 bg-slate-50 flex items-center justify-around">
+    <div class="">
+      <a href="/public/index.html" class="flex flex-row">
+        <img src="./smartphone.svg" class="w-8 mr-4" alt="">
+        <h1 class="font-bold text-blue-400 text-lg">Share X</h1>
+      </a> 
+   </div>
+    <div class="flex flex-row justify-around">
+        <div class="links mx-4">
+            <a href="./loginType.html">Login</a>
+        </div>
+        <div class="links">
+            <a href="./register.html">Register</a>
+        </div>
+    </div>
+    <!-- <div class="wrapper">
+      <input type="checkbox" id="hide-checkbox">
+      <label for="hide-checkbox" class="toggle">
+        <span class="toggle-button">
+          <span class="crater crater-1"></span>
+          <span class="crater crater-2"></span>
+          <span class="crater crater-3"></span>   
+          <span class="crater crater-4"></span>
+          <span class="crater crater-5"></span>
+          <span class="crater crater-6"></span>
+          <span class="crater crater-7"></span>
+        </span>
+        <span class="star star-1"></span>
+        <span class="star star-2"></span>
+        <span class="star star-3"></span>
+        <span class="star star-4"></span>
+        <span class="star star-5"></span>
+        <span class="star star-6"></span>
+        <span class="star star-7"></span>
+        <span class="star star-8"></span>
+      </label>
+    </div> -->
+</nav>
+    <section class="loginEmail md:flex items-center justify-center mt-20 h-full">
+        <div>
+           <img class=" md:w-2/3" src="./login.svg" alt="">
+        </div>
+          <div class="w-full md:w-1/2 bg-white shadow-xl md:mr-12 py-8 px-6 rounded-2xl">
+            <h3 class="text-lg font-bold ">Welcome!</h3>
+            <h2 class="text-lg font-bold text-gray-300">Login to continue</h2>
+              <form class="py-4">
+                 <!-- <% if(messages.message) { %>
+                   <span class="text-red-500 rext-sm"><%=messages.message %></span>
+                <%}%> -->
+                <div class="mb-4 relative ">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                    Email
+                  </label>
+                  
+                    <input name="email" 
+                    class="w-full text-gray-700 outline-none bg-transparent"
+                    id="email" type="email" placeholder="E-mail">
+                    <div class="Border"></div>
+                </div>
+      
+                <div class="mb-6 relative">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Password
+                  </label>
+                  
+                    <input name="password"
+                    class="w-full text-gray-700 outline-none bg-transparent"
+                    id="password" type="password" placeholder="******">
+                    <div class="Border"></div>
+                </div>
+                <div class="flex items-center justify-between">
+                  <button id="submit" class="bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit">
+                    Sign In
+                  </button>
+                  <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="./register.html">
+                    Don't have account?
+                  </a>
+                </div>
+              </form>
+             
+            </div>
+      </section>
+<script src="loginEmail.js"></script>
+<!-- <script src="./mode.js"></script> -->
+</body>
+</html>
