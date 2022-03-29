@@ -7,7 +7,7 @@ const finalMerge = document.querySelector('.final_merge');
 const file_selector_btn = document.querySelector('.file_selector_btn');
 const add_more_file_to_merge_btn = document.querySelector('.add_more_file_to_merge');
 const add_file_to_be_merged_wrapper = document.querySelector('.add_file_to_be_merged_wrapper');
-const total_merge_file_in_storage=0;
+const total_merge_file_in_storage = 0;
 const progessContainer = document.querySelector('.progress_container')
 
 const uploadedPercentage = document.querySelector('#value');
@@ -78,11 +78,11 @@ add_file_to_be_merged_wrapper.addEventListener('click', (e) => {
     // console.log(e.target.classList[0])
     // console.log(e.target.classList[0].split('-'))
     // console.log(e.target.classList[0].split('-')[1])
-    
+
     let temp = JSON.parse(localStorage.getItem('merge_pdf'))
     temp[e.target.classList[0].split('-')[1] - 1] = null
     localStorage.setItem('merge_pdf', JSON.stringify(temp))
-    document.querySelector(`.file-${e.target.classList[0].split('-')[1]} a`).innerText=""
+    document.querySelector(`.file-${e.target.classList[0].split('-')[1]} a`).innerText = ""
     e.target.innerText = ''
     total_merge_file_in_storage--;
   }
@@ -132,6 +132,7 @@ if (localStorage.getItem('@Auth')) {
   document.querySelector('.more_info').style.display = "none"
 }
 
+let converterDecider;
 
 function upload(...args) {
   const file = fileOpener.files[0];
@@ -171,6 +172,8 @@ function upload(...args) {
       localStorage.setItem("file", JSON.stringify({ uuid: JSON.parse(xhr.response).file.split('/')[4] }))
       const result = JSON.parse(xhr.response)
       uploadedFilename = result.resp.fileName
+      console.log(result)
+      converterDecider = result;
 
       if (!args[0])
         showLink(result);
@@ -446,11 +449,30 @@ add_more_file_to_merge_btn.addEventListener('click', () => {
   btn.classList.add("merge_file_selector_btn", "bg-blue-600", "text-white", "px-4", "py-1", "rounded-lg", "border-2", "transition", "duration-300", "ease-out", "mx-1")
   btn.innerHTML = 'Add File ' + initial_file_number_to_be_merged;
 
-  span.classList.add(`remove-${initial_file_number_to_be_merged}`,'text-red-600')
+  span.classList.add(`remove-${initial_file_number_to_be_merged}`, 'text-red-600')
   div.appendChild(btn)
   div.appendChild(a)
   div.appendChild(span)
 
   add_file_to_be_merged_wrapper.appendChild(div)
+})
+
+document.querySelector('.convert-options').addEventListener('click',(e)=>{
+  if(e.target.localName==='button'){
+    const body={
+      data:converterDecider,
+      convertTo:e.target.innerText,
+      convert:true
+    }
+    console.log(body)
+    const converterResult=fetch(uploadURL,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+      },
+      body:JSON.stringify(body)
+    })
+    console.log(converterResult)
+  }
 })
 
