@@ -72,7 +72,7 @@ fileOpener.addEventListener("change", () => {
 });
 
 add_file_to_be_merged_wrapper.addEventListener("click", (e) => {
-  console.log(e);
+  // console.log(e);
   if (e.target.localName === "button")
     helper_merge_file_select(e.target.innerText.split(" ")[2] - 1);
   else if (e.target.localName === "span") {
@@ -98,7 +98,7 @@ function helper_merge_file_select(i) {
   merge_file_opener.click();
   let temp = undefined;
   merge_file_opener.addEventListener("change",(e) => {
-    console.log(e)
+    // console.log(e)
     if(temp==undefined){
       if (e.target.files[0].type === "application/pdf") {
         let temp2=undefined
@@ -156,16 +156,18 @@ function upload(...args) {
   const formData = new FormData();
 
   //file convert options
+  // console.log(merge_file)
+  if(file){
   const lastidx=file.name.lastIndexOf('.')
   let fileConvertTypeOptions=[];
   const selectedFileType=file.name.substring(lastidx+1,file.name.length)
-  console.log(selectedFileType)
+  // console.log(selectedFileType)
   if(selectedFileType==='pdf'){
   fileConvertTypeOptions=[...fileConvertTypeOptions,'docx','pptx']
   }else if(selectedFileType==='docx' ||selectedFileType==='doc' || selectedFileType==='pptx' || selectedFileType==='ppt'|| selectedFileType==='xlsx' || selectedFileType==='xls' ){
     fileConvertTypeOptions=[...fileConvertTypeOptions,'jpg','pdf','png']
   }
-  console.log(fileConvertTypeOptions)
+  // console.log(fileConvertTypeOptions)
   const convertTypeBtnWrapper=document.querySelector('.convert-options')
   fileConvertTypeOptions.forEach((ele)=>{
     const converTypeBtn=document.createElement('button')
@@ -173,6 +175,7 @@ function upload(...args) {
     converTypeBtn.innerText=ele
     convertTypeBtnWrapper.appendChild(converTypeBtn)
   })
+}
   
 
   
@@ -530,7 +533,7 @@ document.querySelector(".convert-options").addEventListener("click", (e) => {
       return data.json()
     }).then((data)=>{
     document.querySelector('.loader-container').style.display='none'
-
+        // console.log(data)
       Toastify({
         text: data.msg,
         duration: 3000,
@@ -544,6 +547,9 @@ document.querySelector(".convert-options").addEventListener("click", (e) => {
           borderRadius: "40px",
         },
       }).showToast();
+
+      localStorage.setItem('file',JSON.stringify({uuid:data.resp.uuid}))
+
     }).catch((err)=>{
     document.querySelector('.loader-container').style.display='none'
 
