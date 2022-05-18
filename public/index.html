@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/downloadjs/1.4.8/download.min.js"
+        integrity="sha512-WiGQZv8WpmQVRUFXZywo7pHIO0G/o3RyiAJZj8YXNN4AV7ReR1RYWVmZJ6y3H06blPcjJmG/sBpOVZjTSFFlzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body class="w-full">
@@ -146,8 +149,8 @@
             Clipboard</div>
     </main>
 
-    <section class="new_features">
-        
+    <section class="new_features flex justify-around">
+        <div class="merge_file_wrapper">
             <h2 class="text-4xl text-center mt-1 text-sky-900 font-semibold text-blue-600">Want to Merge <span
                     class="text-red-500">PDFs ? </span></h2>
             <div class="flex justify-around ">
@@ -189,8 +192,29 @@
                     </a>
                 </div>
             </div>
-        
-     
+        </div>
+
+        <div class="split_pdf_wrapper">
+            <h2 class="text-4xl text-center mt-1 text-sky-900 font-semibold text-blue-600">Want to split <span
+                    class="text-red-500">a PDF ? </span></h2>
+
+            <input type="file" class="hidden" id="split_file_opener">
+            <div
+                class="add_file_to_be_splited_wrapper rounded-md flex justify-around bg-gray-200 mt-2 items-center p-3">
+                <div class="split_file">
+                    <button
+                        class="split_file_selector_btn bg-blue-600 text-white px-4 py-1 rounded-lg border-2 transition duration-300 ease-out mx-1">
+                        Select a File to be Splitted</button>
+                    <a href=""></a>
+                    <span class="remove-1 text-red-600"></span>
+                </div>
+            </div>
+            <div class=" flex justify-center mt-4">
+                <button
+                    class="final_split text-white px-4 py-1 rounded-lg border-2 transition duration-300 ease-out bg-yellow-500 mx-2 ">Split
+                    File</button>
+            </div>
+        </div>
     </section>
 
 

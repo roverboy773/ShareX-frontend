@@ -6,6 +6,9 @@ const password=document.querySelector('#password')
 const confirmPassword=document.querySelector('#confirm_password')
 const changePasswordBtn=document.querySelector('#change_password')
 
+// const host="https://share--x.herokuapp.com/";
+const host = "http://localhost:5000/";
+
 let generatedOTP
 sendOTPBtn.addEventListener('click',(e)=>{
     
@@ -16,7 +19,7 @@ sendOTPBtn.addEventListener('click',(e)=>{
     const data={emailID:email.value,mode:'Password Change'}
     
     if(email.value.indexOf('@')!=-1 && (email.value.length-email.value.indexOf('@'))>=6 && email.value.indexOf('@')>=2){
-    fetch('http://localhost:5000/sendOTP',{
+    fetch(`${host}/sendOTP`,{
         method: "POST",
         cors:'no-cors',
         headers: {
@@ -76,7 +79,7 @@ changePasswordBtn.addEventListener('click',(e)=>{
             email:email.value,
             password:password.value
         }
-        fetch('http://localhost:5000/updateUser',{
+        fetch(`${host}/updateUser`,{
             method:'POST',
             headers:{
                 "Content-Type":"application/json"

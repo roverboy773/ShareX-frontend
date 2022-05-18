@@ -1,6 +1,8 @@
 const otp=document.querySelector('#otp')
 const otpWrapper=document.querySelector('.otp_wrapper')
 let optGenerated
+// const host="https://share--x.herokuapp.com/";
+const host = "http://localhost:5000/";
 
 document.getElementById("submit").addEventListener('click',async(e)=>{
     e.preventDefault()
@@ -11,7 +13,7 @@ document.getElementById("submit").addEventListener('click',async(e)=>{
     let data={email:email,password:password}
     
     
-    fetch('http://localhost:5000/login',{
+    fetch(`${host}login`,{
         method: 'POST', // or 'PUT'
         headers: {
             'Accept': 'application/json',
@@ -24,7 +26,7 @@ document.getElementById("submit").addEventListener('click',async(e)=>{
           localStorage.setItem('@Auth',JSON.stringify({user:data.user_id,name:data.name}))
              console.log('i')
           const data1={emailID:email,mode:'Login Auth'}
-          const result =await fetch('http://localhost:5000/sendOTP',{
+          const result =await fetch(`${host}sendOTP`,{
             method: 'POST', // or 'PUT'
             headers: {
                 'Accept': 'application/json',
@@ -54,7 +56,7 @@ document.getElementById("submit").addEventListener('click',async(e)=>{
           
         } else{
           Toastify({
-            text: res.msg,
+            text: 'wrong credentials',
             duration: 3000,
             newWindow: true,
             close: true,

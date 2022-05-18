@@ -1,5 +1,8 @@
 let otpVal
 
+// const host="https://share--x.herokuapp.com/";
+const host = "http://localhost:5000/";
+
 document.getElementById("continue").addEventListener('click', async (e) => {
 
   e.preventDefault()
@@ -57,7 +60,7 @@ document.getElementById("continue").addEventListener('click', async (e) => {
     let data = { name, email, password }
 
 
-    const result = await fetch('http://localhost:5000/register', {
+    const result = await fetch(`${host}register`, {
       method: 'POST', // or 'PUT'
       headers: {
         'Accept': 'application/json',
@@ -85,7 +88,7 @@ document.getElementById("continue").addEventListener('click', async (e) => {
     }
     else {
       const data={emailID:email,mode:'registration'}
-      const result = await fetch('http://localhost:5000/sendOTP', {
+      const result = await fetch(`${host}sendOTP`, {
         method: 'POST', // or 'PUT'
         headers: {
           'Accept': 'application/json',

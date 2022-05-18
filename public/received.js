@@ -1,6 +1,9 @@
 const id=JSON.parse(localStorage.getItem('@Auth'))._id
 
-fetch(`http://localhost:5000/received_files/${id}`)
+// const host="https://share--x.herokuapp.com/";
+const host = "http://localhost:5000/";
+
+fetch(`${host}received_files/${id}`)
 .then(res=>res.json())
 .then((res)=>{
     res.received_files.forEach(ele=>{
