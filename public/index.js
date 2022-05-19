@@ -160,7 +160,7 @@ function upload(...args) {
   const merge_file = merge_file_opener.files[0];
   const split_file = split_file_opener.files[0];
   const formData = new FormData();
-
+   console.log(args,file)
   //file convert options
   // console.log(merge_file)
   if(file){
@@ -215,7 +215,7 @@ function upload(...args) {
       converterDecider = result;
       
       //if normal upload request showlink
-      if (!args[0]==='merge' && !args[0]==='split') showLink(result);
+      if (args.length==0) showLink(result);
       // console.log(result)
       if (result.file) {
         Toastify({
@@ -379,7 +379,7 @@ document.querySelector(".sent_to_btn").addEventListener("click", async (e) => {
       file: JSON.parse(localStorage.getItem("file")).uuid,
     };
     // console.log(data)
-    const result = await fetch(`https://share--x.herokuapp.com/sent_to/${receiver}`, {
+    const result = await fetch(`http://localhost:5000/sent_to/${receiver}`, {
       method: "POST", // or 'PUT'
       headers: {
         Accept: "application/json",
@@ -589,7 +589,9 @@ document.querySelector(".convert-options").addEventListener("click", (e) => {
 
 split_file_selector_btn.addEventListener('click',(e)=>{
   e.preventDefault();
-  split_file_opener.click();
+     if (!localStorage.getItem("@Auth"))
+      window.location.href = "/public/loginType.html";
+    split_file_opener.click();
 })
 
 split_file_opener.addEventListener('change',(e)=>{
@@ -598,65 +600,58 @@ split_file_opener.addEventListener('change',(e)=>{
 
 finalSplit.addEventListener('click',(e)=>{
   e.preventDefault();
+  
   if (localStorage.getItem("split_pdf")) {
     fetch(uploadURL, {
       method: "POST",
       headers: {
-        'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json',
       },
-      responseType:'arraybuffer',
       body: JSON.stringify({
         data: JSON.parse(localStorage.getItem("split_pdf")),
         toBeSplit: true,
       }),
     })
-      .then(async(response) => {
-        console.log("got al files in api ");
-        let blob = await new Blob([response.data], { type: 'application/zip' }) //It is optional
-        
-        download(response.data,"attachement.zip","application/zip") //this is third party it will prompt download window in browser.
-        return response.data;
+      .then((response) => {
+        if(response.status==200){
+          Toastify({
+                      text: "File has been Splitted",
+                      duration: 3000,
+                      newWindow: true,
+                      close: true,
+                      gravity: "top", // `top` or `bottom`
+                      position: "right", // `left`, `center` or `right`
+                      stopOnFocus: true, // Prevents dismissing of toast on hover
+                      style: {
+                        background: "#46c837",
+                        borderRadius: "40px",
+                      },
+                    }).showToast();
+        }
+       return response.json()
       })
-      
-      // fetch('https://api.pdf.co/v1/pdf/split', {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       'x-api-key': "roverboy773@gmail.com_fbeccaca8c85d60ec1671024299767df5896e8184d1b87801e01a201410e760f11927d16"
-      //     },
-      //     body: JSON.stringify({
-      //       url: `https://share--x.herokuapp.com/uploads/${JSON.parse(localStorage.getItem('split_pdf'))}`,
-      //       pages: "1-2,3-",
-      //       name: "result.pdf",
-      //       // data: JSON.parse(localStorage.getItem("split_pdf")),
-      //       // toBeSplit: true,
-      //     }),
-      //   })
-      //     .then((data) => {
-      //       console.log(data)
-      //       if (data.status === 200) {
-      //         Toastify({
-      //           text: "File Successfully Splitted",
-      //           duration: 3000,
-      //           newWindow: true,
-      //           close: true,
-      //           gravity: "top", // `top` or `bottom`
-      //           position: "right", // `left`, `center` or `right`
-      //           stopOnFocus: true, // Prevents dismissing of toast on hover
-      //           style: {
-      //             background: "#46c837",
-      //             borderRadius: "40px",
-      //           },
-      //         }).showToast();
-      //       }
-            
-      //       return data.json();
-      //     }).then((data)=>{
-      //          console.log(data)
-      //     })
-
-
-
+      .then((data)=>{
+        console.log(data)
+        let target = document.querySelector(".download_splitted_file");
+        target.classList.remove("hidden");
+        target.classList.add("block");
+        target.href = `${data.file}`;
+        target.setAttribute("target", "_blank");
+      }).catch(()=>{
+        Toastify({
+          text: "Something went wrong",
+          duration: 3000,
+          newWindow: true,
+          close: true,
+          gravity: "top", // `top` or `bottom`
+          position: "right", // `left`, `center` or `right`
+          stopOnFocus: true, // Prevents dismissing of toast on hover
+          style: {
+            background: "#db142b",
+            borderRadius: "40px",
+          },
+        }).showToast();
+      })
   } else {
     Toastify({
       text: "1 Files atleast needed",
