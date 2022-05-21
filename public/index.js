@@ -23,6 +23,8 @@ const showURL = document.querySelector("#fileURL");
 const sharingContainer = document.querySelector(".sharing_container");
 const copyButton = document.querySelector("#copy");
 const copyMessage = document.querySelector(".msg");
+const startPage=document.querySelector('.start')
+const endPage=document.querySelector('.end')
 
 // const host="https://share--x.herokuapp.com/";
 const host = "http://localhost:5000/";
@@ -610,9 +612,12 @@ finalSplit.addEventListener('click',(e)=>{
       body: JSON.stringify({
         data: JSON.parse(localStorage.getItem("split_pdf")),
         toBeSplit: true,
+        start: startPage.value,
+        end: endPage.value
       }),
     })
       .then((response) => {
+        console.log(response)
         if(response.status==200){
           Toastify({
                       text: "File has been Splitted",
